@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ job.title }} - Job Details</title>
+
+  <style>
+    :root {
+      --bg: #0f1720;
+      --card: #10141a;
+      --muted: #9aa6b2;
+      --accent: #00d4a6;
+      --accent-2: #00b4ff;
+      --danger: #ff6b6b;
+      color-scheme: dark;
+    }
+
+    body {
+      background: linear-gradient(180deg, #071019 0%, #0f1720 100%);
+      font-family: Inter, system-ui, sans-serif;
+      color: #e6eef3;
+      margin: 0;
+      padding: 32px;
+    }
+
+    .shell {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    }
+
+    h1 {
+      font-size: 26px;
+      color: var(--accent);
+      margin: 0 0 10px 0;
+    }
+
+    .info p {
+      margin: 6px 0;
+      font-size: 15px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-weight: 500;
+      margin-right: 6px;
+    }
+
+    .apply-box {
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .btn {
+      padding: 12px 20px;
+      margin-top: 12px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #031b22;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 15px;
+      border: none;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+
+<body>
+<div class="shell">
+
+  <!-- Job Card -->
+  <div class="card">
+
+    <h1>{{ job.title }}</h1>
+
+    <div class="info">
+      <p><span class="label">Pay per Hour:</span> ₹{{ job.pay_per_hour }}</p>
+      <p><span class="label">Tech Stack:</span> {{ job.tech_stack }}</p>
+      <p><span class="label">Experience Level:</span> {{ job.experience_level }}</p>
+      <p><span class="label">Description:</span> {{ job.description }}</p>
+    </div>
+
+    <div class="apply-box">
+      <h3 style="margin-bottom: 10px;">Apply to this Job</h3>
+
+      <form method="POST" action="/api/jobs/{{ job.id }}/apply/">
+        {% csrf_token %}
+        <button type="submit" class="btn">Apply Now</button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

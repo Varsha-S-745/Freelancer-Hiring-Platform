@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillConnect - Signup</title>
+  <style>
+    /* === Global Styles === */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00d4ff;
+      text-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* === Signup Box === */
+    .signup-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px 50px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      transition: all 0.4s ease;
+      width: 320px;
+    }
+
+    .signup-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1rem;
+      transition: 0.3s ease;
+      outline: none;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 8px #00d4ff;
+    }
+
+    /* === Role Selection === */
+    .role-select {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+    }
+
+    label {
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    input[type="radio"] {
+      accent-color: #00d4ff;
+      transform: scale(1.2);
+      margin-right: 6px;
+      cursor: pointer;
+    }
+
+    label:hover {
+      color: #00d4ff;
+    }
+
+    /* === Button === */
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
+    }
+
+    /* === Floating Circles === */
+    .background {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(0, 212, 255, 0.12);
+      animation: float 10s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9rem;
+      color: #aaa;
+      text-align: center;
+      width: 100%;
+    }
+
+    footer a {
+      color: #00d4ff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 400px) {
+      .signup-box {
+        width: 85%;
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Circles -->
+  <div class="background">
+    <div class="circle" style="width: 80px; height: 80px; top: 15%; left: 20%; animation-delay: 0s;"></div>
+    <div class="circle" style="width: 120px; height: 120px; top: 60%; left: 70%; animation-delay: 2s;"></div>
+    <div class="circle" style="width: 90px; height: 90px; top: 75%; left: 30%; animation-delay: 4s;"></div>
+    <div class="circle" style="width: 100px; height: 100px; top: 25%; left: 85%; animation-delay: 6s;"></div>
+  </div>
+
+  <div class="signup-box">
+    <h2>Create Your SkillConnect Account</h2>
+    <form id="signupForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+
+      <div class="role-select">
+        <label><input type="radio" name="role" value="freelancer" checked> Freelancer</label>
+        <label><input type="radio" name="role" value="recruiter"> Recruiter</label>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <footer>
+    © 2025 SkillConnect | <a href="#">Login</a> | <a href="#">Help</a>
+  </footer>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const role = document.querySelector('input[name="role"]:checked').value;
+
+      try {
+        const response = await fetch('/api/signup/', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({username, password, role})
+        });
+        const data = await response.json();
+        alert(data.message || data.error || "Signup completed!");
+      } catch {
+        alert("Network error. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>

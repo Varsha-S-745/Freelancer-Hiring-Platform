@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillConnect | Freelance Job Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 60px 80px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #00ff33, #40ff005a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .roles {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, #11ff00, #1aff008b);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 72, 0.832);
+        }
+
+        a:hover {
+            background: linear-gradient(90deg, #00ff26, #26ff0083);
+            box-shadow: 0 0 25px rgba(4, 255, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            a {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SkillConnect</h1>
+        <p>Select your role to continue:</p>
+        <div class="roles">
+            <a href="/freelancer/auth/">Freelancer</a>
+            <a href="/recruiter/auth/">Recruiter</a>
+        </div>
+    </div>
+</body>
+</html>
